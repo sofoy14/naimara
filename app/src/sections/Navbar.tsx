@@ -37,12 +37,12 @@ export function Navbar({ scrolled }: NavbarProps) {
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#5D8A66] to-[#1B4D3E] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
               <img
                 src="/images/logo.png"
-                alt="Naimara"
+                alt="Lavoisier"
                 className="w-6 h-6 object-contain"
               />
             </div>
             <span className="font-serif text-xl font-semibold text-[#1B4D3E]">
-              Naimara
+              Lavoisier
             </span>
           </a>
 

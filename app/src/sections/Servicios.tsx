@@ -23,6 +23,11 @@ const servicios = [
     description: 'Tratamiento suave y efectivo para enfermedades patológicas, oncológicas y más.',
   },
   {
+    icon: '/images/servicio-osteopatia.png',
+    title: 'Osteopatía',
+    description: 'Técnicas manuales para restaurar la movilidad y aliviar dolores musculoesqueléticos.',
+  },
+  {
     icon: '/images/servicio-quiropractica.png',
     title: 'Quiropráctica',
     description: 'Ajustes vertebrales para aliviar dolores y mejorar tu calidad de vida.',

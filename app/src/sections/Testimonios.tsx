@@ -9,7 +9,7 @@ const testimonios = [
     initial: 'M',
   },
   {
-    quote: 'El plan nutricional cambió mi vida. Aprendí a alimentarme correctamente y mi energía aumentó notablemente. El equipo de Naimara es muy profesional.',
+    quote: 'El plan nutricional cambió mi vida. Aprendí a alimentarme correctamente y mi energía aumentó notablemente. El equipo de Lavoisier es muy profesional.',
     name: 'José Gulfo',
     location: 'Popayán, Cauca',
     initial: 'J',

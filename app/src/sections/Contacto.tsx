@@ -11,8 +11,8 @@ const contactInfo = [
   {
     icon: '/images/contacto-email.png',
     title: 'Email',
-    content: 'naimaramedicinaintegral@gmail.com',
-    link: 'mailto:naimaramedicinaintegral@gmail.com',
+    content: 'saludintegrallavaisier@gmail.com',
+    link: 'mailto:saludintegrallavaisier@gmail.com',
   },
   {
     icon: '/images/contacto-telefono.png',
@@ -39,6 +39,7 @@ const servicios = [
   'Ginecología',
   'Naturopatía',
   'Homeopatía',
+  'Osteopatía',
   'Quiropráctica',
   'Fisioterapia y Rehabilitación',
   'Reflexoterapia',

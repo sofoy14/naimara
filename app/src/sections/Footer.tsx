@@ -5,7 +5,7 @@ export function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <h3 className="font-serif text-2xl font-semibold mb-4">Naimara</h3>
+            <h3 className="font-serif text-2xl font-semibold mb-4">Lavoisier</h3>
             <p className="text-white/70 text-sm leading-relaxed">
               Centro de Medicina Integral dedicado a tu bienestar. Medicina
               tradicional y alternativa con un enfoque humano y consciente.
@@ -76,10 +76,10 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:naimaramedicinaintegral@gmail.com"
+                  href="mailto:saludintegrallavaisier@gmail.com"
                   className="hover:text-white transition-colors"
                 >
-                  naimaramedicinaintegral@gmail.com
+                  saludintegrallavaisier@gmail.com
                 </a>
               </li>
               <li>
@@ -101,7 +101,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/10 mt-10 pt-8 text-center">
           <p className="text-white/50 text-sm">
-            &copy; 2025 Centro de Medicina Integral Naimara. Todos los derechos
+            &copy; 2025 Centro de Medicina Integral Lavoisier. Todos los derechos
             reservados.
           </p>
         </div>
