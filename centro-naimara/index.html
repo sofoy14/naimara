@@ -1,0 +1,2234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Naimara - Medicina Natural y Homeopática</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1B4D3E;
+            --primary-light: #5D8A66;
+            --secondary: #C67B5C;
+            --accent: #D4A574;
+            --background: #F5F5F0;
+            --white: #FFFFFF;
+            --text-dark: #2C3E2D;
+            --text-light: #6B7B6C;
+            --shadow: rgba(27, 77, 62, 0.1);
+            --shadow-hover: rgba(27, 77, 62, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Pulse Animation */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 30px var(--shadow-hover);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--shadow-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--background) 0%, #E8EDE9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse, rgba(93, 138, 102, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(27, 77, 62, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--secondary);
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px var(--shadow-hover);
+        }
+
+        .floating-card {
+            position: absolute;
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-card.card-1 {
+            top: 10%;
+            right: 0;
+            animation-delay: 0s;
+        }
+
+        .floating-card.card-2 {
+            bottom: 20%;
+            left: -20px;
+            animation-delay: 1.5s;
+        }
+
+        .floating-card img {
+            width: 40px;
+            height: 40px;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        .floating-card span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-tag img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--background);
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--white);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .service-card:hover .service-icon img {
+            filter: brightness(0) invert(1);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 1rem;
+        }
+
+        /* Treatments Section */
+        .treatments {
+            padding: 6rem 2rem;
+            background: var(--background);
+        }
+
+        .treatments-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .treatment-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.4s ease;
+        }
+
+        .treatment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px var(--shadow-hover);
+        }
+
+        .treatment-visual {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .treatment-card:nth-child(1) .treatment-visual {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+
+        .treatment-card:nth-child(2) .treatment-visual {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+        }
+
+        .treatment-card:nth-child(3) .treatment-visual {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        }
+
+        .treatment-icon-big {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .treatment-icon-big img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .treatment-content {
+            padding: 2rem;
+        }
+
+        .treatment-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .treatment-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .treatment-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .treatment-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .treatment-features li::before {
+            content: '✓';
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .products-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--background);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .product-image {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .product-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* Guide Section */
+        .guide {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+        }
+
+        .guide-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .guide .section-title {
+            color: var(--white);
+        }
+
+        .guide .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .guide-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .guide-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .guide-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .guide-icon img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .guide-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .guide-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Appointment Section - Custom Calendar */
+        .appointment {
+            padding: 6rem 2rem;
+            background: var(--background);
+        }
+
+        .appointment-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .appointment-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .appointment-info > p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .appointment-benefits {
+            list-style: none;
+        }
+
+        .appointment-benefits li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .appointment-benefits li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .appointment-benefits li span:first-child {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Custom Calendar Styles */
+        .calendar-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 50px var(--shadow);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-header h3 {
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .calendar-nav button {
+            width: 35px;
+            height: 35px;
+            border: none;
+            background: var(--background);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-nav button:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-light);
+            padding: 0.5rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .calendar-day:hover:not(.disabled):not(.selected) {
+            background: var(--background);
+            border-color: var(--primary-light);
+        }
+
+        .calendar-day.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .calendar-day.selected {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .calendar-day.today {
+            border-color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .time-slots {
+            margin-bottom: 1.5rem;
+        }
+
+        .time-slots h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+
+        .time-slot {
+            padding: 0.75rem;
+            border: 2px solid var(--background);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot:hover:not(.disabled) {
+            border-color: var(--primary-light);
+            background: var(--background);
+        }
+
+        .time-slot.selected {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .time-slot.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .appointment-form {
+            margin-top: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--background);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+        }
+
+        .btn-whatsapp {
+            width: 100%;
+            background: #25D366;
+            color: var(--white);
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Blog Section */
+        .blog {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .blog-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--background);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .blog-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .blog-card:nth-child(1) .blog-image {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+
+        .blog-card:nth-child(2) .blog-image {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+        }
+
+        .blog-card:nth-child(3) .blog-image {
+            background: linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 100%);
+        }
+
+        .blog-card:nth-child(4) .blog-image {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+        }
+
+        .blog-card:nth-child(5) .blog-image {
+            background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD9 100%);
+        }
+
+        .blog-card:nth-child(6) .blog-image {
+            background: linear-gradient(135deg, #E8EAF6 0%, #C5CAE9 100%);
+        }
+
+        .blog-image img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .blog-content h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .blog-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: var(--background);
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info > p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .contact-item img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .contact-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .contact-item a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .contact-map {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px var(--shadow);
+        }
+
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.75rem;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 35px;
+            height: 35px;
+            background: var(--background);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .modal h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .modal p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container,
+            .appointment-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 6rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-stats {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .floating-card {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid,
+            .treatments-grid,
+            .products-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .time-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="icons/logo-icon.png" alt="Centro Naimara">
+                Centro Naimara
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#tratamientos">Tratamientos</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="#agendar" class="nav-cta">Agendar Cita</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-container">
+            <div class="hero-content reveal-left">
+                <div class="hero-badge">
+                    <img src="icons/floating-natural.png" alt="100% Natural">
+                    100% Medicina Natural
+                </div>
+                <h1>Tu Bienestar es Nuestra <span>Misión</span></h1>
+                <p class="hero-description">
+                    En Centro Naimara combinamos la sabiduría ancestral de la medicina natural con el conocimiento científico moderno para ofrecerte tratamientos integrales que restauran tu equilibrio físico, mental y emocional.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#agendar" class="btn-primary">
+                        Agendar Consulta
+                        <span>→</span>
+                    </a>
+                    <a href="#servicios" class="btn-secondary">
+                        Conocer Servicios
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item reveal-scale stagger-1">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Años de Experiencia</div>
+                    </div>
+                    <div class="stat-item reveal-scale stagger-2">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-label">Pacientes Atendidos</div>
+                    </div>
+                    <div class="stat-item reveal-scale stagger-3">
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">Especialidades</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image reveal-right">
+                <img src="https://images.unsplash.com/photo-1544367563-12123d8965cd?w=600&h=700&fit=crop" alt="Medicina Natural">
+                <div class="floating-card card-1">
+                    <img src="icons/floating-natural.png" alt="100% Natural">
+                    <span>100% Natural</span>
+                </div>
+                <div class="floating-card card-2">
+                    <img src="icons/floating-experiencia.png" alt="Experiencia">
+                    <span>+15 Años Exp.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicios">
+        <div class="section-header reveal">
+            <div class="section-tag">
+                <img src="icons/logo-icon.png" alt="icono">
+                NUESTROS SERVICIOS
+            </div>
+            <h2 class="section-title">Especialidades Médicas</h2>
+            <p class="section-subtitle">
+                Ofrecemos una amplia gama de servicios de medicina natural y convencional para cuidar de tu salud de manera integral.
+            </p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal stagger-1">
+                <div class="service-icon">
+                    <img src="icons/servicio-medicina.png" alt="Medicina General">
+                </div>
+                <h3>Medicina General</h3>
+                <p>Atención médica integral con enfoque preventivo y curativo, combinando lo mejor de la medicina convencional y natural.</p>
+                <a href="#" class="service-link" onclick="showModal('Medicina General', 'Nuestro servicio de Medicina General ofrece atención médica integral con un enfoque que combina la medicina convencional con terapias naturales. Realizamos diagnósticos completos, tratamientos personalizados y seguimiento continuo de tu salud.')">Ver más →</a>
+            </div>
+            <div class="service-card reveal stagger-2">
+                <div class="service-icon">
+                    <img src="icons/servicio-ginecologia.png" alt="Ginecología">
+                </div>
+                <h3>Ginecología</h3>
+                <p>Salud femenina integral con tratamientos naturales para el equilibrio hormonal y el bienestar de la mujer en todas las etapas.</p>
+                <a href="#" class="service-link" onclick="showModal('Ginecología', 'Ofrecemos atención ginecológica integral con un enfoque natural. Tratamos desequilibrios hormonales, síndrome premenstrual, menopausia, y brindamos acompañamiento en todas las etapas de la vida de la mujer.')">Ver más →</a>
+            </div>
+            <div class="service-card reveal stagger-3">
+                <div class="service-icon">
+                    <img src="icons/servicio-naturopatia.png" alt="Naturopatía">
+                </div>
+                <h3>Naturopatía</h3>
+                <p>Terapias naturales que estimulan la capacidad de autocuración del organismo mediante hierbas, alimentación y estilo de vida.</p>
+                <a href="#" class="service-link" onclick="showModal('Naturopatía', 'La naturopatía es un sistema de medicina que utiliza la naturaleza para sanar. A través de hierbas medicinales, nutrición, hidroterapia y cambios en el estilo de vida, ayudamos a tu cuerpo a recuperar su equilibrio natural.')">Ver más →</a>
+            </div>
+            <div class="service-card reveal stagger-4">
+                <div class="service-icon">
+                    <img src="icons/servicio-homeopatia.png" alt="Homeopatía">
+                </div>
+                <h3>Homeopatía</h3>
+                <p>Medicina suave y efectiva que utiliza sustancias naturales en dosis mínimas para estimular la respuesta curativa del cuerpo.</p>
+                <a href="#" class="service-link" onclick="showModal('Homeopatía', 'La homeopatía es un sistema médico basado en la ley de los similares. Utilizamos medicamentos altamente diluidos y dinamizados que estimulan la capacidad curativa natural del organismo sin efectos secundarios.')">Ver más →</a>
+            </div>
+            <div class="service-card reveal stagger-5">
+                <div class="service-icon">
+                    <img src="icons/servicio-quiropractica.png" alt="Quiropráctica">
+                </div>
+                <h3>Quiropráctica</h3>
+                <p>Ajustes vertebrales para corregir subluxaciones, aliviar el dolor y mejorar la función del sistema nervioso.</p>
+                <a href="#" class="service-link" onclick="showModal('Quiropráctica', 'La quiropráctica se enfoca en el diagnóstico y tratamiento de los trastornos del sistema neuromusculoesquelético. A través de ajustes precisos, restauramos la alineación de la columna vertebral y mejoramos la función nerviosa.')">Ver más →</a>
+            </div>
+            <div class="service-card reveal stagger-6">
+                <div class="service-icon">
+                    <img src="icons/servicio-fisioterapia.png" alt="Fisioterapia">
+                </div>
+                <h3>Fisioterapia y Rehabilitación</h3>
+                <p>Recuperación funcional mediante ejercicios terapéuticos, técnicas manuales y agentes físicos.</p>
+                <a href="#" class="service-link" onclick="showModal('Fisioterapia y Rehabilitación', 'Nuestro servicio de fisioterapia te ayuda a recuperar la movilidad y función después de lesiones, cirugías o condiciones crónicas. Utilizamos técnicas manuales, ejercicios terapéuticos y modalidades físicas avanzadas.')">Ver más →</a>
+            </div>
+            <div class="service-card reveal stagger-1">
+                <div class="service-icon">
+                    <img src="icons/servicio-reflexoterapia.png" alt="Reflexoterapia">
+                </div>
+                <h3>Reflexoterapia</h3>
+                <p>Estimulación de puntos reflejos en pies y manos para promover la salud y el equilibrio energético.</p>
+                <a href="#" class="service-link" onclick="showModal('Reflexoterapia', 'La reflexoterapia es una técnica terapéutica que estimula puntos específicos en los pies y manos que corresponden a diferentes órganos y sistemas del cuerpo. Ayuda a reducir el estrés, mejorar la circulación y restaurar el equilibrio energético.')">Ver más →</a>
+            </div>
+            <div class="service-card reveal stagger-2">
+                <div class="service-icon">
+                    <img src="icons/servicio-nutricion.png" alt="Nutrición">
+                </div>
+                <h3>Nutrición Clínica</h3>
+                <p>Planes alimenticios personalizados para optimizar tu salud, manejar condiciones médicas y alcanzar tu peso ideal.</p>
+                <a href="#" class="service-link" onclick="showModal('Nutrición Clínica', 'Nuestra nutricionista clínica diseña planes alimenticios personalizados basados en tus necesidades específicas. Trabajamos con condiciones como diabetes, hipertensión, problemas digestivos, y apoyamos tus objetivos de salud y bienestar.')">Ver más →</a>
+            </div>
+            <div class="service-card reveal stagger-3">
+                <div class="service-icon">
+                    <img src="icons/servicio-psicologia.png" alt="Psicología">
+                </div>
+                <h3>Psicología</h3>
+                <p>Apoyo emocional y mental con enfoque holístico para tu bienestar psicológico integral.</p>
+                <a href="#" class="service-link" onclick="showModal('Psicología', 'Nuestro servicio de psicología ofrece apoyo emocional con un enfoque holístico. Trabajamos el bienestar mental desde una perspectiva integral, considerando la interconexión entre mente, cuerpo y emociones.')">Ver más →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treatments Section -->
+    <section class="treatments" id="tratamientos">
+        <div class="section-header reveal">
+            <div class="section-tag">
+                <img src="icons/logo-icon.png" alt="icono">
+                TRATAMIENTOS DESTACADOS
+            </div>
+            <h2 class="section-title">Terapias Naturales</h2>
+            <p class="section-subtitle">
+                Descubre nuestros tratamientos más solicitados, diseñados para restaurar tu salud de manera natural y efectiva.
+            </p>
+        </div>
+        <div class="treatments-grid">
+            <div class="treatment-card reveal-left">
+                <div class="treatment-visual">
+                    <div class="treatment-icon-big">
+                        <img src="icons/tratamiento-homeopatia.png" alt="Homeopatía">
+                    </div>
+                </div>
+                <div class="treatment-content">
+                    <h3>Homeopatía</h3>
+                    <p>Medicina suave y profunda que trata la causa raíz de las enfermedades, no solo los síntomas.</p>
+                    <ul class="treatment-features">
+                        <li>Sin efectos secundarios</li>
+                        <li>Tratamiento personalizado</li>
+                        <li>Apto para todas las edades</li>
+                        <li>Complementa otros tratamientos</li>
+                    </ul>
+                    <a href="#agendar" class="btn-primary" style="width: 100%; justify-content: center;">Agendar Consulta</a>
+                </div>
+            </div>
+            <div class="treatment-card reveal">
+                <div class="treatment-visual">
+                    <div class="treatment-icon-big">
+                        <img src="icons/tratamiento-fitoterapia.png" alt="Fitoterapia">
+                    </div>
+                </div>
+                <div class="treatment-content">
+                    <h3>Fitoterapia</h3>
+                    <p>El poder curativo de las plantas medicinales en preparados seguros y efectivos.</p>
+                    <ul class="treatment-features">
+                        <li>Extractos naturales puros</li>
+                        <li>Fórmulas personalizadas</li>
+                        <li>Amplio espectro terapéutico</li>
+                        <li>Respaldado científicamente</li>
+                    </ul>
+                    <a href="#agendar" class="btn-primary" style="width: 100%; justify-content: center;">Agendar Consulta</a>
+                </div>
+            </div>
+            <div class="treatment-card reveal-right">
+                <div class="treatment-visual">
+                    <div class="treatment-icon-big">
+                        <img src="icons/tratamiento-jugoterapia.png" alt="Jugoterapia">
+                    </div>
+                </div>
+                <div class="treatment-content">
+                    <h3>Jugoterapia</h3>
+                    <p>Terapia nutricional con jugos frescos para desintoxicar, nutrir y revitalizar tu cuerpo.</p>
+                    <ul class="treatment-features">
+                        <li>Jugos 100% naturales</li>
+                        <li>Planes desintoxicantes</li>
+                        <li>Nutrición concentrada</li>
+                        <li>Resultados visibles</li>
+                    </ul>
+                    <a href="#agendar" class="btn-primary" style="width: 100%; justify-content: center;">Agendar Consulta</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="productos">
+        <div class="section-header reveal">
+            <div class="section-tag">
+                <img src="icons/logo-icon.png" alt="icono">
+                PRODUCTOS NATURALES
+            </div>
+            <h2 class="section-title">Nuestros Productos</h2>
+            <p class="section-subtitle">
+                Productos naturales de alta calidad para complementar tu tratamiento y mantener tu salud.
+            </p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card reveal-scale stagger-1">
+                <div class="product-image">
+                    <img src="icons/producto-jarabe.png" alt="Jarabe Natural">
+                </div>
+                <h3>Jarabes Naturales</h3>
+                <p>Para el sistema respiratorio y digestivo</p>
+                <div class="product-price">Desde $12.00</div>
+            </div>
+            <div class="product-card reveal-scale stagger-2">
+                <div class="product-image">
+                    <img src="icons/producto-gotas.png" alt="Gotas Homeopáticas">
+                </div>
+                <h3>Gotas Homeopáticas</h3>
+                <p>Medicamentos homeopáticos personalizados</p>
+                <div class="product-price">Desde $15.00</div>
+            </div>
+            <div class="product-card reveal-scale stagger-3">
+                <div class="product-image">
+                    <img src="icons/tratamiento-fitoterapia.png" alt="Extractos Vegetales">
+                </div>
+                <h3>Extractos Vegetales</h3>
+                <p>Concentrados de plantas medicinales</p>
+                <div class="product-price">Desde $18.00</div>
+            </div>
+            <div class="product-card reveal-scale stagger-4">
+                <div class="product-image">
+                    <img src="icons/tratamiento-jugoterapia.png" alt="Suplementos">
+                </div>
+                <h3>Suplementos Naturales</h3>
+                <p>Vitaminas y minerales de origen natural</p>
+                <div class="product-price">Desde $22.00</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guide Section -->
+    <section class="guide">
+        <div class="guide-container">
+            <div class="section-header reveal">
+                <div class="section-tag" style="color: var(--accent);">
+                    <img src="icons/logo-icon.png" alt="icono" style="filter: brightness(0) invert(1);">
+                    GUÍA DEL PACIENTE
+                </div>
+                <h2 class="section-title">Recomendaciones Importantes</h2>
+                <p class="section-subtitle">
+                    Sigue estas guías para obtener los mejores resultados de tu tratamiento natural.
+                </p>
+            </div>
+            <div class="guide-grid">
+                <div class="guide-card reveal stagger-1">
+                    <div class="guide-icon">
+                        <img src="icons/guia-medicamento.png" alt="Cómo tomar">
+                    </div>
+                    <h3>¿Cómo tomar los medicamentos?</h3>
+                    <p>Toma los medicamentos homeopáticos 15 minutos antes o después de comer. Evita tocar los gránulos con las manos.</p>
+                </div>
+                <div class="guide-card reveal stagger-2">
+                    <div class="guide-icon">
+                        <img src="icons/guia-almacenamiento.png" alt="Almacenamiento">
+                    </div>
+                    <h3>Almacenamiento correcto</h3>
+                    <p>Guarda los medicamentos en lugar fresco, seco y alejado de la luz solar directa y campos electromagnéticos.</p>
+                </div>
+                <div class="guide-card reveal stagger-3">
+                    <div class="guide-icon">
+                        <img src="icons/guia-prohibido.png" alt="Qué evitar">
+                    </div>
+                    <h3>¿Qué evitar durante el tratamiento?</h3>
+                    <p>Evita menta, café y productos con mentol mientras recibes tratamiento homeopático, ya que pueden anular su efecto.</p>
+                </div>
+                <div class="guide-card reveal stagger-4">
+                    <div class="guide-icon">
+                        <img src="icons/guia-habitos.png" alt="Hábitos">
+                    </div>
+                    <h3>Hábitos saludables</h3>
+                    <p>Mantén una alimentación balanceada, hidratación adecuada, ejercicio regular y sueño reparador.</p>
+                </div>
+                <div class="guide-card reveal stagger-5">
+                    <div class="guide-icon">
+                        <img src="icons/guia-mejorar.png" alt="Aggravation">
+                    </div>
+                    <h3>¿Es normal sentirse peor al inicio?</h3>
+                    <p>Algunos pacientes experimentan una "aggravation" temporal. Esto es signo de que el tratamiento está actuando.</p>
+                </div>
+                <div class="guide-card reveal stagger-6">
+                    <div class="guide-icon">
+                        <img src="icons/guia-seguridad.png" alt="Seguridad">
+                    </div>
+                    <h3>Seguridad garantizada</h3>
+                    <p>Los medicamentos homeopáticos son seguros, no tienen efectos secundarios ni contraindicaciones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Section -->
+    <section class="appointment" id="agendar">
+        <div class="appointment-container">
+            <div class="appointment-info reveal-left">
+                <h2>Agenda tu Cita</h2>
+                <p>Reserva tu consulta de manera fácil y rápida. Selecciona la fecha y hora que mejor te convenga.</p>
+                <ul class="appointment-benefits">
+                    <li>
+                        <span>1</span>
+                        <div>
+                            <strong>Selecciona fecha y hora</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-light);">Elige el momento que mejor se adapte a tu agenda</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>2</span>
+                        <div>
+                            <strong>Completa tus datos</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-light);">Ingresa tu información de contacto</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>3</span>
+                        <div>
+                            <strong>Confirma por WhatsApp</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-light);">Te redirigiremos para confirmar tu cita</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="calendar-container reveal-right">
+                <div class="calendar-header">
+                    <h3 id="currentMonth">Noviembre 2025</h3>
+                    <div class="calendar-nav">
+                        <button onclick="changeMonth(-1)">←</button>
+                        <button onclick="changeMonth(1)">→</button>
+                    </div>
+                </div>
+                <div class="calendar-grid" id="calendar">
+                    <!-- Calendar generated by JS -->
+                </div>
+                <div class="time-slots">
+                    <h4>Horarios disponibles</h4>
+                    <div class="time-grid" id="timeSlots">
+                        <!-- Time slots generated by JS -->
+                    </div>
+                </div>
+                <div class="appointment-form">
+                    <div class="form-group">
+                        <label for="patientName">Nombre completo</label>
+                        <input type="text" id="patientName" placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="patientPhone">Teléfono</label>
+                        <input type="tel" id="patientPhone" placeholder="Tu número de WhatsApp">
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceType">Tipo de consulta</label>
+                        <select id="serviceType">
+                            <option value="">Selecciona un servicio</option>
+                            <option value="Medicina General">Medicina General</option>
+                            <option value="Homeopatía">Homeopatía</option>
+                            <option value="Naturopatía">Naturopatía</option>
+                            <option value="Quiropráctica">Quiropráctica</option>
+                            <option value="Nutrición">Nutrición Clínica</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <button class="btn-whatsapp" id="whatsappBtn" onclick="sendToWhatsApp()" disabled>
+                        <span>💬</span>
+                        Confirmar por WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <div class="section-header reveal">
+            <div class="section-tag">
+                <img src="icons/logo-icon.png" alt="icono">
+                BLOG DE SALUD
+            </div>
+            <h2 class="section-title">Artículos y Recursos</h2>
+            <p class="section-subtitle">
+                Información valiosa sobre medicina natural, consejos de salud y noticias del centro.
+            </p>
+        </div>
+        <div class="blog-grid">
+            <article class="blog-card reveal stagger-1">
+                <div class="blog-image">
+                    <img src="icons/blog-homeopatia.png" alt="Homeopatía">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>15 Nov 2025</span>
+                        <span>Homeopatía</span>
+                    </div>
+                    <h3>¿Qué es la Homeopatía y cómo funciona?</h3>
+                    <p>Descubre los principios fundamentales de esta medicina natural y sus beneficios para tu salud.</p>
+                    <a href="#" class="read-more" onclick="showModal('¿Qué es la Homeopatía?', 'La homeopatía es un sistema médico desarrollado por Samuel Hahnemann hace más de 200 años. Se basa en el principio de \"lo similar cura lo similar\", utilizando sustancias naturales altamente diluidas para estimular la capacidad curativa del organismo.')">Leer más →</a>
+                </div>
+            </article>
+            <article class="blog-card reveal stagger-2">
+                <div class="blog-image">
+                    <img src="icons/blog-fitoterapia.png" alt="Fitoterapia">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>10 Nov 2025</span>
+                        <span>Fitoterapia</span>
+                    </div>
+                    <h3>Plantas medicinales para fortalecer el sistema inmunológico</h3>
+                    <p>Conoce las hierbas más efectivas para mantener tus defensas fuertes de forma natural.</p>
+                    <a href="#" class="read-more" onclick="showModal('Plantas Medicinales', 'Las plantas medicinales como el echinacea, el jengibre, la equinácea y el propóleo son excelentes aliados para fortalecer el sistema inmunológico de manera natural y segura.')">Leer más →</a>
+                </div>
+            </article>
+            <article class="blog-card reveal stagger-3">
+                <div class="blog-image">
+                    <img src="icons/blog-jugoterapia.png" alt="Jugoterapia">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>5 Nov 2025</span>
+                        <span>Nutrición</span>
+                    </div>
+                    <h3>Jugos detox: mitos y realidades</h3>
+                    <p>Aprende la verdad sobre las dietas detox y cómo hacer una desintoxicación segura.</p>
+                    <a href="#" class="read-more" onclick="showModal('Jugos Detox', 'Los jugos detox pueden ser beneficiosos cuando se hacen correctamente. Lo importante es usar ingredientes frescos, variados y no extenderlos por períodos prolongados sin supervisión profesional.')">Leer más →</a>
+                </div>
+            </article>
+            <article class="blog-card reveal stagger-4">
+                <div class="blog-image">
+                    <img src="icons/blog-legalidad.png" alt="Legalidad">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>1 Nov 2025</span>
+                        <span>Legalidad</span>
+                    </div>
+                    <h3>Homeopatía en Ecuador: marco legal y regulación</h3>
+                    <p>Información sobre la normativa ecuatoriana que respalda la práctica homeopática.</p>
+                    <a href="#" class="read-more" onclick="showModal('Marco Legal', 'En Ecuador, la homeopatía está reconocida y regulada. El MSP ha establecido normas para garantizar la calidad y seguridad de los medicamentos homeopáticos, y existe un registro oficial de profesionales habilitados.')">Leer más →</a>
+                </div>
+            </article>
+            <article class="blog-card reveal stagger-5">
+                <div class="blog-image">
+                    <img src="icons/blog-aggravation.png" alt="Aggravation">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>28 Oct 2025</span>
+                        <span>Educación</span>
+                    </div>
+                    <h3>¿Por qué me siento peor al inicio del tratamiento?</h3>
+                    <p>Entiende qué es la aggravation homeopática y por qué es signo de que el tratamiento funciona.</p>
+                    <a href="#" class="read-more" onclick="showModal('Aggravation Homeopática', 'La aggravation es una exacerbación temporal de los síntomas que puede ocurrir al inicio del tratamiento homeopático. Es un signo positivo de que el medicamento está actuando y generalmente dura poco tiempo.')">Leer más →</a>
+                </div>
+            </article>
+            <article class="blog-card reveal stagger-6">
+                <div class="blog-image">
+                    <img src="icons/blog-horarios.png" alt="Horarios">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>20 Oct 2025</span>
+                        <span>Consejos</span>
+                    </div>
+                    <h3>Horarios recomendados para tomar medicamentos naturales</h3>
+                    <p>Guía práctica sobre cuándo y cómo tomar tus remedios naturales para máxima efectividad.</p>
+                    <a href="#" class="read-more" onclick="showModal('Horarios de Medicamentos', 'Los medicamentos homeopáticos se toman generalmente en ayunas, 15 minutos antes o después de comer. Los tratamientos crónicos suelen administrarse 2-3 veces al día, mientras que los agudos pueden requerir dosis más frecuentes.')">Leer más →</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="contact-container">
+            <div class="contact-info reveal-left">
+                <h2>Contáctanos</h2>
+                <p>Estamos aquí para ayudarte. Visítanos o contáctanos para más información sobre nuestros servicios.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <img src="icons/contacto-ubicacion.png" alt="Ubicación">
+                        <div>
+                            <h4>Dirección</h4>
+                            <p>Av. Principal 123, Quito, Ecuador</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <img src="icons/contacto-telefono.png" alt="Teléfono">
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p><a href="tel:+593991234567">+593 99 123 4567</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <img src="icons/contacto-email.png" alt="Email">
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:info@centronaimara.com">info@centronaimara.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <img src="icons/contacto-horario.png" alt="Horario">
+                        <div>
+                            <h4>Horario de Atención</h4>
+                            <p>Lunes a Viernes: 9:00 - 18:00<br>Sábados: 9:00 - 13:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-map reveal-right">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7955555555555!2d-78.5!3d-0.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMTInMDAuMCJTIDc4wrAzMCcwMC4wIlc!5e0!3m2!1ses!2sec!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <img src="icons/logo-icon.png" alt="Centro Naimara" style="filter: brightness(0) invert(1);">
+                    Centro Naimara
+                </a>
+                <p>Medicina Natural y Homeopática. Tu bienestar es nuestra misión. Más de 15 años brindando salud integral de forma natural.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">f</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="WhatsApp">💬</a>
+                </div>
+            </div>
+            <div>
+                <h4>Servicios</h4>
+                <ul class="footer-links">
+                    <li><a href="#servicios">Medicina General</a></li>
+                    <li><a href="#servicios">Homeopatía</a></li>
+                    <li><a href="#servicios">Naturopatía</a></li>
+                    <li><a href="#servicios">Quiropráctica</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Enlaces</h4>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#tratamientos">Tratamientos</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Términos de Uso</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Centro Naimara. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/593991234567" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        💬
+    </a>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h3 id="modalTitle">Título</h3>
+            <p id="modalContent">Contenido</p>
+            <a href="#agendar" class="btn-primary" onclick="closeModal()" style="width: 100%; justify-content: center;">Agendar Consulta</a>
+        </div>
+    </div>
+
+    <script>
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Modal functions
+        function showModal(title, content) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalContent').textContent = content;
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modal')) {
+                closeModal();
+            }
+        });
+
+        // Calendar Logic
+        let currentDate = new Date();
+        let selectedDate = null;
+        let selectedTime = null;
+        const doctorWhatsApp = '593991234567'; // Replace with actual doctor's WhatsApp
+
+        const months = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+
+        const timeSlots = [
+            '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+            '12:00', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'
+        ];
+
+        function generateCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            document.getElementById('currentMonth').textContent = `${months[month]} ${year}`;
+            
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date();
+            
+            let html = '';
+            
+            // Day headers
+            const dayHeaders = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+            dayHeaders.forEach(day => {
+                html += `<div class="calendar-day-header">${day}</div>`;
+            });
+            
+            // Empty cells before first day
+            for (let i = 0; i < firstDay; i++) {
+                html += '<div class="calendar-day disabled"></div>';
+            }
+            
+            // Days
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                const isToday = date.toDateString() === today.toDateString();
+                const isPast = date < new Date(today.setHours(0, 0, 0, 0));
+                const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
+                
+                let className = 'calendar-day';
+                if (isPast) className += ' disabled';
+                if (isToday) className += ' today';
+                if (isSelected) className += ' selected';
+                
+                html += `<div class="${className}" onclick="selectDate(${year}, ${month}, ${day}, ${isPast})">${day}</div>`;
+            }
+            
+            document.getElementById('calendar').innerHTML = html;
+        }
+
+        function generateTimeSlots() {
+            let html = '';
+            timeSlots.forEach(time => {
+                const isSelected = selectedTime === time;
+                let className = 'time-slot';
+                if (isSelected) className += ' selected';
+                html += `<div class="${className}" onclick="selectTime('${time}')">${time}</div>`;
+            });
+            document.getElementById('timeSlots').innerHTML = html;
+        }
+
+        function changeMonth(direction) {
+            currentDate.setMonth(currentDate.getMonth() + direction);
+            generateCalendar();
+        }
+
+        function selectDate(year, month, day, isPast) {
+            if (isPast) return;
+            selectedDate = new Date(year, month, day);
+            generateCalendar();
+            checkFormValidity();
+        }
+
+        function selectTime(time) {
+            selectedTime = time;
+            generateTimeSlots();
+            checkFormValidity();
+        }
+
+        function checkFormValidity() {
+            const name = document.getElementById('patientName').value.trim();
+            const phone = document.getElementById('patientPhone').value.trim();
+            const service = document.getElementById('serviceType').value;
+            const btn = document.getElementById('whatsappBtn');
+            
+            btn.disabled = !(selectedDate && selectedTime && name && phone && service);
+        }
+
+        document.getElementById('patientName').addEventListener('input', checkFormValidity);
+        document.getElementById('patientPhone').addEventListener('input', checkFormValidity);
+        document.getElementById('serviceType').addEventListener('change', checkFormValidity);
+
+        function sendToWhatsApp() {
+            const name = document.getElementById('patientName').value.trim();
+            const phone = document.getElementById('patientPhone').value.trim();
+            const service = document.getElementById('serviceType').value;
+            
+            const dateStr = selectedDate.toLocaleDateString('es-EC', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            const message = `¡Hola! Quiero agendar una cita en Centro Naimara.%0A%0A` +
+                `*Nombre:* ${name}%0A` +
+                `*Teléfono:* ${phone}%0A` +
+                `*Servicio:* ${service}%0A` +
+                `*Fecha:* ${dateStr}%0A` +
+                `*Hora:* ${selectedTime}%0A%0A` +
+                `Por favor confirmen mi cita. ¡Gracias!`;
+            
+            window.open(`https://wa.me/${doctorWhatsApp}?text=${message}`, '_blank');
+        }
+
+        // Initialize
+        generateCalendar();
+        generateTimeSlots();
+    </script>
+</body>
+</html>
