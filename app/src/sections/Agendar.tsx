@@ -114,7 +114,7 @@ export function Agendar() {
       `Por favor confirmen mi cita. ¡Gracias!`;
 
     window.open(
-      `https://wa.me/573128087003?text=${encodeURIComponent(message)}`,
+      `https://wa.me/573166998154?text=${encodeURIComponent(message)}`,
       '_blank'
     );
   };

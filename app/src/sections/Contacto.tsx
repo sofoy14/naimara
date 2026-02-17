@@ -17,8 +17,8 @@ const contactInfo = [
   {
     icon: '/images/contacto-telefono.png',
     title: 'Teléfono',
-    content: '312-808-7003',
-    link: 'tel:+573128087003',
+    content: '316-699-8154',
+    link: 'tel:+573166998154',
   },
   {
     icon: '/images/contacto-certificado.png',

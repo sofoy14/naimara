@@ -279,7 +279,7 @@ export function Productos() {
         >
           <p className="text-[#5A5A5A] mb-4">¿No encuentras lo que buscas?</p>
           <a
-            href="https://wa.me/573128087003?text=Hola,%20quiero%20ver%20el%20catálogo%20completo%20de%20productos"
+            href="https://wa.me/573166998154?text=Hola,%20quiero%20ver%20el%20catálogo%20completo%20de%20productos"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#C67B5C] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#B56A4D] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"

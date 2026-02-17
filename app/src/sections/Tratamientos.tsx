@@ -147,7 +147,7 @@ export function Tratamientos() {
                 </ul>
 
                 <a
-                  href="https://wa.me/573128087003"
+                  href="https://wa.me/573166998154"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 bg-[#C67B5C] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-[#B56A4D] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"

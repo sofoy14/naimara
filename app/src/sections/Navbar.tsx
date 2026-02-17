@@ -58,7 +58,7 @@ export function Navbar({ scrolled }: NavbarProps) {
               </a>
             ))}
             <a
-              href="https://wa.me/573128087003"
+              href="https://wa.me/573166998154"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#5D8A66] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#1B4D3E] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
