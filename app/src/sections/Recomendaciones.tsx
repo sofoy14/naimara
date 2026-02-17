@@ -1,77 +1,93 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChevronDown, Droplets, Leaf, Clock, AlertCircle, Check, Sparkles } from 'lucide-react';
+import { ChevronDown, Droplets, Leaf, Clock, AlertCircle, Check, Sparkles, GraduationCap, Heart, Apple, BookOpen } from 'lucide-react';
 
-const recomendacionesHomeopaticas = [
+const consejosSalud = [
   {
-    icon: Droplets,
-    title: 'Evitar durante el tratamiento',
-    content: 'Cremas calientes, gel adelgazantes, talcos, yodosalin, cigarrillo, perfumes, licor, carne de cerdo y res, granos, tinto, té, vinagre, tabaco, café, ají, condimentos, enlatados, paquetes, botellas, gaseosas, comida chatarra, carnes frías, embutidos, dulce (usar Stevia), cítricos, ajo y bajo de sal.',
-    note: 'Todo esto anula el efecto de los medicamentos.',
+    icon: Heart,
+    title: 'Escucha tu cuerpo',
+    content: 'Tu cuerpo envía señales constantes. Aprende a identificar cuando necesita descanso, movimiento o alimentación sana. La prevención es la mejor medicina.',
+    note: 'Sé consciente de tus sensaciones diarias.',
   },
   {
-    icon: Check,
-    title: 'Sin contraindicaciones',
-    content: 'Los medicamentos homeopáticos no tienen efectos tóxicos y se pueden ingerir con medicamentos de la EPS sin riesgo alguno, incluso en embarazo y lactancia.',
-    note: 'Medicamentos para tensión, corazón, riñón, diabetes, estómago, gastritis, anticoagulantes, etc.',
+    icon: Apple,
+    title: 'Alimentación consciente',
+    content: 'Come para nutrir, no solo para llenar. Prioriza alimentos naturales, evita procesados y escucha las necesidades reales de tu organismo.',
+    note: 'Cada alimento es información para tus células.',
   },
   {
-    icon: Clock,
-    title: 'Horario de toma',
-    content: 'Los medicamentos no deben tomarse a horas de la comida. Solo media hora antes o una hora después de haber ingerido alguna bebida o alimento.',
-    note: 'Siga las recomendaciones profesionales homeopáticas.',
+    icon: BookOpen,
+    title: 'Conocimiento es poder',
+    content: 'Entiende cómo funciona tu cuerpo. Saber por qué comes, cómo te mueves y qué te afecta te da el control de tu propia salud.',
+    note: 'Eres tu mejor médico cuando estás informado.',
   },
   {
     icon: Leaf,
-    title: 'Conservación',
-    content: 'Conservar en lugar fresco, seco y envases bien cerrados. Lejos del alcance de los niños.',
-    note: 'No llevar en cartera o bolsos (cosméticos y celulares los alteran).',
+    title: 'Regreso a lo natural',
+    content: 'La naturaleza tiene todo lo que necesitas. Hierbas, alimentos frescos, movimiento al aire libre y conexión con lo elemental.',
+    note: 'Menos química, más naturaleza.',
   },
   {
-    icon: AlertCircle,
-    title: 'Aggravation - Inicio de la mejoría',
-    content: 'Las medicinas tienden a acentuar o agravar los síntomas al inicio del tratamiento. No alarmarse, no tiene sobredosis.',
-    note: 'Cualquier duda comunicarse al 316 699 81 54.',
+    icon: Clock,
+    title: 'Constancia sobre intensidad',
+    content: 'Pequeños hábitos saludables mantenidos en el tiempo generan grandes cambios. No busques la perfección, busca la constancia.',
+    note: 'La salud es un estilo de vida, no un destino.',
   },
   {
     icon: Sparkles,
-    title: 'Campos electromagnéticos',
-    content: 'NO dejar cerca a campos electromagnéticos (celulares, computadores, microondas, TV). Tomar en cucharas de plástico.',
-    note: 'Globulos diluirlos en la boca, gotas en un cuarto de vaso de cristal (no de la llave).',
+    title: 'Mente sana, cuerpo sano',
+    content: 'Tu actitud y emociones impactan directamente tu bienestar físico. Cultiva pensamientos positivos, gratitud y paz interior.',
+    note: 'Sanar es más que tratar síntomas.',
   },
 ];
 
-const recomendacionesFitoterapia = {
-  desayunos: [
-    'Ajonjolí – linaza – avena – chía con semilla sandia',
-    'Almendras – linaza – avena con porción de piña',
-    'Pecana – chía – linaza – avena – naranja',
-    'Ajonjolí – linaza – chía – avena con papaya – manzana',
-    'Linaza – almendras – avena con mandarina – arepa',
-    'Té o aromática de flor de Jamaica con naranja',
+const habitosSaludables = {
+  alimentacion: [
+    'Come conscientemente: mastica bien y disfruta cada bocado',
+    'Prioriza alimentos de temporada y cercanía',
+    'Reduce azúcares y procesados gradualmente',
+    'Hidrátate con agua tibia entre comidas',
+    'Incluye vegetales de todos los colores',
+    'Escucha tu hambre real vs. ansiedad emocional',
   ],
-  almuerzos: [
-    'Yuca sancochada con sudado de pescado encebollado',
-    'Sancocho de mazorca – alverjas – cebada – papa – habichuelas',
-    'Arroz con saltaditos de brócolis con alverjas',
-    'Sancocho de yuca – ollucos – frijoles verdes – mazorca',
-    'Arroz con verduras: brócolis – habichuelas – alverjas – pimentón',
-    'Garbanzos con arracachas, ensalada de repollo y aguacates',
+  movimiento: [
+    'Camine 30 minutos diarios al aire libre',
+    'Estira tu cuerpo al despertar y antes de dormir',
+    'Evita estar sentado más de 1 hora seguida',
+    'Encuentra una actividad que disfrutes: bailar, nadar, yoga',
+    'Fortalece tu núcleo abdominal gradualmente',
+    'Respira profundamente varias veces al día',
   ],
-  cenas: [
-    'Aromática de jengibre con tres manzanas',
-    'Aromática de flor de Jamaica con peras',
-    'Leche vegetal con granadillas',
-    'Aromática de toronjil con frutas',
+  descanso: [
+    'Duerme 7-8 horas en horarios regulares',
+    'Desconecta pantallas 1 hora antes de dormir',
+    'Crea una rutina de relajación nocturna',
+    'Toma siestas cortas si tu cuerpo las pide',
+    'Respeta tus ritmos naturales de energía',
+    'El descanso es tan importante como la actividad',
   ],
 };
 
-const jugoterapias = [
-  { name: 'Piña-Manzana-Pepino', time: '6AM', duration: '15 días' },
-  { name: 'Ajo-Pimentón', time: '11AM', duration: '15 días' },
-  { name: 'Linaza-Mora', time: '4PM', duration: '15 días' },
-  { name: 'Pepino-Apio-Manzana-Linaza', time: '6AM', duration: '15 días' },
-  { name: 'Brócolis-Lechuga-Zanahoria', time: '11AM', duration: '15 días' },
-  { name: 'Fresa-Mora', time: '4PM', duration: '15 días' },
+const rutinasSalud = [
+  { 
+    title: 'Mañana energizante', 
+    time: '6:00 - 8:00 AM',
+    habits: ['Agua tibia con limón', 'Estiramientos suaves', 'Desayuno nutritivo']
+  },
+  { 
+    title: 'Mediodía activo', 
+    time: '11:00 AM - 2:00 PM',
+    habits: ['Almuerzo balanceado', 'Paseo corto', 'Momento de pausa']
+  },
+  { 
+    title: 'Tarde renovadora', 
+    time: '4:00 - 6:00 PM',
+    habits: ['Snack saludable', 'Movimiento o ejercicio', 'Hidratación']
+  },
+  { 
+    title: 'Noche restauradora', 
+    time: '7:00 - 9:00 PM',
+    habits: ['Cena ligera', 'Desconexión digital', 'Meditación o lectura']
+  },
 ];
 
 export function Recomendaciones() {
@@ -98,9 +114,9 @@ export function Recomendaciones() {
   }, []);
 
   const tabs = [
-    { id: 'homeopatia', label: 'Homeopatía', icon: Droplets },
-    { id: 'fitoterapia', label: 'Fitoterapia', icon: Leaf },
-    { id: 'jugoterapia', label: 'Jugoterapia', icon: Sparkles },
+    { id: 'homeopatia', label: 'Filosofía', icon: Heart },
+    { id: 'fitoterapia', label: 'Hábitos', icon: Leaf },
+    { id: 'jugoterapia', label: 'Rutinas', icon: Clock },
   ] as const;
 
   return (
@@ -120,14 +136,21 @@ export function Recomendaciones() {
             isVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-8 blur-sm'
           }`}
         >
+          {/* Escuela Nacional de Salud Badge */}
+          <div className="inline-flex items-center gap-2 bg-[#1B4D3E] text-white px-5 py-2.5 rounded-full mb-6 shadow-lg">
+            <GraduationCap className="w-5 h-5" />
+            <span className="font-semibold text-sm">Escuela Nacional de Salud</span>
+          </div>
+          
           <span className="inline-block text-[#C67B5C] font-semibold text-sm uppercase tracking-widest mb-4">
-            Guía del Paciente
+            Sé tu propia medicina
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1B4D3E] mb-6">
-            Recomendaciones para tu tratamiento
+            Educa tu cuerpo, sana tu vida
           </h2>
           <p className="text-lg text-[#5A5A5A]">
-            Sigue estas indicaciones para obtener los mejores resultados de tu tratamiento natural.
+            Te damos las herramientas para que tomes el control de tu salud. 
+            Aprende a prevenir y sanar de manera natural.
           </p>
         </div>
 
@@ -165,10 +188,10 @@ export function Recomendaciones() {
             isVisible ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'
           }`}
         >
-          {/* Homeopatía */}
+          {/* Consejos de Salud */}
           {activeTab === 'homeopatia' && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {recomendacionesHomeopaticas.map((item, index) => {
+              {consejosSalud.map((item, index) => {
                 const Icon = item.icon;
                 const isExpanded = expandedIndex === index;
                 
@@ -226,19 +249,19 @@ export function Recomendaciones() {
             </div>
           )}
 
-          {/* Fitoterapia */}
+          {/* Hábitos Saludables */}
           {activeTab === 'fitoterapia' && (
             <div className="grid lg:grid-cols-3 gap-6">
-              {/* Desayunos */}
+              {/* Alimentación */}
               <div className="bg-white rounded-3xl p-6 shadow-lg">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-[#C67B5C]/10 rounded-xl flex items-center justify-center">
-                    <Sparkles className="w-5 h-5 text-[#C67B5C]" />
+                    <Apple className="w-5 h-5 text-[#C67B5C]" />
                   </div>
-                  <h3 className="font-serif text-xl font-semibold text-[#1B4D3E]">Desayunos</h3>
+                  <h3 className="font-serif text-xl font-semibold text-[#1B4D3E]">Alimentación</h3>
                 </div>
                 <ul className="space-y-3">
-                  {recomendacionesFitoterapia.desayunos.map((item, i) => (
+                  {habitosSaludables.alimentacion.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-[#5A5A5A]">
                       <span className="w-5 h-5 bg-[#5D8A66]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="w-1.5 h-1.5 bg-[#5D8A66] rounded-full" />
@@ -247,23 +270,18 @@ export function Recomendaciones() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-4 p-3 bg-[#F7F5F0] rounded-xl">
-                  <p className="text-xs text-[#5A5A5A]">
-                    <span className="font-semibold text-[#1B4D3E]">Nota:</span> Las leches licuadas en agua tibia, máximo 3 vasos por día. No hervir.
-                  </p>
-                </div>
               </div>
 
-              {/* Almuerzos */}
+              {/* Movimiento */}
               <div className="bg-white rounded-3xl p-6 shadow-lg">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-[#5D8A66]/10 rounded-xl flex items-center justify-center">
-                    <Leaf className="w-5 h-5 text-[#5D8A66]" />
+                    <Sparkles className="w-5 h-5 text-[#5D8A66]" />
                   </div>
-                  <h3 className="font-serif text-xl font-semibold text-[#1B4D3E]">Almuerzos</h3>
+                  <h3 className="font-serif text-xl font-semibold text-[#1B4D3E]">Movimiento</h3>
                 </div>
                 <ul className="space-y-3">
-                  {recomendacionesFitoterapia.almuerzos.map((item, i) => (
+                  {habitosSaludables.movimiento.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-[#5A5A5A]">
                       <span className="w-5 h-5 bg-[#5D8A66]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="w-1.5 h-1.5 bg-[#5D8A66] rounded-full" />
@@ -272,23 +290,18 @@ export function Recomendaciones() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-4 p-3 bg-[#F7F5F0] rounded-xl">
-                  <p className="text-xs text-[#5A5A5A]">
-                    <span className="font-semibold text-[#1B4D3E]">Nota:</span> Verduras semicrudas o al vapor. Usar aceites vegetales extra virgen.
-                  </p>
-                </div>
               </div>
 
-              {/* Cenas */}
+              {/* Descanso */}
               <div className="bg-white rounded-3xl p-6 shadow-lg">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-[#1B4D3E]/10 rounded-xl flex items-center justify-center">
                     <Clock className="w-5 h-5 text-[#1B4D3E]" />
                   </div>
-                  <h3 className="font-serif text-xl font-semibold text-[#1B4D3E]">Cenas</h3>
+                  <h3 className="font-serif text-xl font-semibold text-[#1B4D3E]">Descanso</h3>
                 </div>
                 <ul className="space-y-3">
-                  {recomendacionesFitoterapia.cenas.map((item, i) => (
+                  {habitosSaludables.descanso.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-[#5A5A5A]">
                       <span className="w-5 h-5 bg-[#5D8A66]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="w-1.5 h-1.5 bg-[#5D8A66] rounded-full" />
@@ -297,47 +310,47 @@ export function Recomendaciones() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-4 p-3 bg-[#F7F5F0] rounded-xl">
-                  <p className="text-xs text-[#5A5A5A]">
-                    <span className="font-semibold text-[#1B4D3E]">Nota:</span> Consumir mayor cantidad de manzana y cumplir normas de disciplina.
-                  </p>
-                </div>
               </div>
             </div>
           )}
 
-          {/* Jugoterapia */}
+          {/* Rutinas de Salud */}
           {activeTab === 'jugoterapia' && (
             <div className="bg-white rounded-3xl p-8 shadow-lg">
               <div className="text-center mb-8">
-                <p className="text-[#5A5A5A] mb-2">Tomar antes de cada alimento con agua tibia</p>
-                <p className="text-[#C67B5C] font-semibold text-sm">Ser disciplinados con las horas exactas</p>
+                <p className="text-[#5A5A5A] mb-2">Estructura tu día para potenciar tu bienestar</p>
+                <p className="text-[#C67B5C] font-semibold text-sm">Pequeños hábitos que transforman tu salud</p>
               </div>
               
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {jugoterapias.map((jugo, index) => (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {rutinasSalud.map((rutina, index) => (
                   <div
                     key={index}
                     className="group bg-[#F7F5F0] rounded-2xl p-5 hover:bg-[#5D8A66] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                   >
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-2xl font-bold text-[#1B4D3E] group-hover:text-white transition-colors">
-                        {jugo.time}
-                      </span>
-                      <span className="text-xs font-medium text-[#5A5A5A] bg-white px-2 py-1 rounded-full group-hover:bg-white/20 group-hover:text-white transition-colors">
-                        {jugo.duration}
+                      <span className="text-lg font-bold text-[#1B4D3E] group-hover:text-white transition-colors">
+                        {rutina.time}
                       </span>
                     </div>
-                    <p className="text-[#3D3D3D] font-medium group-hover:text-white transition-colors">
-                      {jugo.name}
-                    </p>
+                    <h4 className="text-[#3D3D3D] font-semibold mb-2 group-hover:text-white transition-colors">
+                      {rutina.title}
+                    </h4>
+                    <ul className="space-y-1">
+                      {rutina.habits.map((habit, i) => (
+                        <li key={i} className="text-sm text-[#5A5A5A] group-hover:text-white/90 transition-colors flex items-center gap-1">
+                          <span className="w-1 h-1 bg-[#5D8A66] group-hover:bg-white rounded-full" />
+                          {habit}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 ))}
               </div>
 
               <div className="mt-8 p-4 bg-[#1B4D3E]/5 rounded-2xl">
                 <p className="text-sm text-[#5A5A5A] text-center">
-                  <span className="font-semibold text-[#1B4D3E]">Importante:</span> Tomar aceite de oliva extra virgen 2-3 cucharadas + un vaso de agua tibia con limón, en ayunas y 30 minutos antes de dormir.
+                  <span className="font-semibold text-[#1B4D3E]">Recuerda:</span> No se trata de perfección, sino de progreso. Comienza con un hábito y construye desde ahí.
                 </p>
               </div>
             </div>

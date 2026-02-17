@@ -38,7 +38,7 @@ export function Hero() {
               style={{ transitionDelay: '150ms' }}
             >
               Tu salud al{' '}
-              <span className="text-[#C67B5C] italic">alcance natural</span>
+              <span className="text-[#C67B5C] italic">alcance de todos</span>
             </h1>
 
             <p
