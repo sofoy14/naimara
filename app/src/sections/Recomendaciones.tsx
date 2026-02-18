@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChevronDown, Droplets, Leaf, Clock, AlertCircle, Check, Sparkles, GraduationCap, Heart, Apple, BookOpen } from 'lucide-react';
+import { ChevronDown, Leaf, Clock, Sparkles, GraduationCap, Heart, Apple, BookOpen } from 'lucide-react';
 
 const consejosSalud = [
   {
