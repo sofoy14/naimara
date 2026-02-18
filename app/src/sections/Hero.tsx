@@ -16,11 +16,24 @@ export function Hero() {
       ref={heroRef}
       className="min-h-screen flex items-center pt-20 pb-12 px-4 sm:px-6 lg:px-8 xl:px-12 relative overflow-hidden"
     >
-      {/* Animated background blobs */}
-      <div className="absolute top-[-20%] right-[-10%] w-[70%] h-[120%] bg-gradient-to-br from-[#5D8A66]/10 to-transparent rounded-full pointer-events-none animate-pulse-slow" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[60%] bg-gradient-to-tr from-[#C67B5C]/5 to-transparent rounded-full pointer-events-none animate-pulse-slow" style={{ animationDelay: '1s' }} />
+      {/* Background Images - Responsive */}
+      {/* Mobile: Horizontal image */}
+      <div 
+        className="absolute inset-0 lg:hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(/images/hero-bg-mobile.png)' }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-[#F7F5F0]/95 via-[#F7F5F0]/80 to-transparent" />
+      </div>
+      
+      {/* Desktop: Vertical image */}
+      <div 
+        className="absolute inset-0 hidden lg:block bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(/images/hero-bg-desktop.png)' }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-[#F7F5F0]/95 via-[#F7F5F0]/70 to-[#F7F5F0]/40" />
+      </div>
 
-      <div className="max-w-7xl mx-auto w-full relative">
+      <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Content */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
@@ -72,17 +85,19 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Visual */}
+          {/* Visual - Logo Image */}
           <div className="order-1 lg:order-2 flex justify-center relative">
             <div
               className="reveal opacity-0 scale-95 blur-[4px] transition-all duration-1200 ease-out relative"
               style={{ transitionDelay: '200ms' }}
             >
-              {/* Main Circle */}
-              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-[#5D8A66] to-[#1B4D3E] flex items-center justify-center shadow-2xl animate-breathe">
-                <span className="text-6xl sm:text-7xl lg:text-8xl text-white/20">
-                  ✦
-                </span>
+              {/* Logo Image instead of green circle */}
+              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl animate-breathe bg-white">
+                <img
+                  src="/images/logo-main.png"
+                  alt="Centro de Medicina Integral Lavoisier"
+                  className="w-full h-full object-contain p-4"
+                />
               </div>
 
               {/* Floating Cards */}
@@ -157,15 +172,6 @@ export function Hero() {
         
         .animate-float {
           animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 0.5; transform: scale(1); }
-          50% { opacity: 0.8; transform: scale(1.05); }
-        }
-        
-        .animate-pulse-slow {
-          animation: pulse-slow 8s ease-in-out infinite;
         }
       `}</style>
     </section>
