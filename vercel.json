@@ -1,17 +1,6 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "vite",
-  "rootDirectory": "app",
-  "buildCommand": "chmod -R +x node_modules/.bin 2>/dev/null || true && npm run build",
-  "cleanUrls": true,
   "rewrites": [
-    {
-      "source": "/dashboard",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/dashboard/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/dashboard", "destination": "/index.html" },
+    { "source": "/dashboard/(.*)", "destination": "/index.html" }
   ]
 }
