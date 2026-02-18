@@ -1,8 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { getHeroContent, getContactInfo } from '../lib/contentful';
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const [heroContent, setHeroContent] = useState<any>(null);
+  const [contactInfo, setContactInfo] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const elements = heroRef.current?.querySelectorAll('.reveal');
@@ -11,13 +15,55 @@ export function Hero() {
     });
   }, []);
 
+  useEffect(() => {
+    async function loadContent() {
+      try {
+        const [hero, contact] = await Promise.all([
+          getHeroContent(),
+          getContactInfo()
+        ]);
+        setHeroContent(hero);
+        setContactInfo(contact);
+      } catch (error) {
+        console.error('Error loading content:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadContent();
+  }, []);
+
+  // Valores por defecto mientras carga
+  const defaultHero = {
+    badge: 'Centro de Medicina Integral en Popayán',
+    title: 'Tu salud al',
+    titleHighlight: 'alcance de todos',
+    description: 'Te ofrecemos medicina tradicional y alternativa con un enfoque holístico. Homeopatía, naturopatía, nutrición y más para tu bienestar integral.',
+    ctaPrimary: 'Agendar por WhatsApp',
+    ctaSecondary: 'Conocer servicios'
+  };
+
+  const defaultContact = {
+    whatsappNumber: '573166998154'
+  };
+
+  const content = heroContent || defaultHero;
+  const contact = contactInfo || defaultContact;
+
+  if (loading) {
+    return (
+      <section className="min-h-screen flex items-center justify-center bg-[#F7F5F0]">
+        <div className="animate-pulse text-[#5D8A66]">Cargando...</div>
+      </section>
+    );
+  }
+
   return (
     <section
       ref={heroRef}
       className="min-h-screen flex items-center pt-20 pb-12 px-4 sm:px-6 lg:px-8 xl:px-12 relative overflow-hidden"
     >
       {/* Background Images - Responsive */}
-      {/* Mobile: Horizontal image */}
       <div 
         className="absolute inset-0 lg:hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: 'url(/images/hero-bg-mobile.png)' }}
@@ -25,7 +71,6 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#F7F5F0]/95 via-[#F7F5F0]/80 to-transparent" />
       </div>
       
-      {/* Desktop: Vertical image */}
       <div 
         className="absolute inset-0 hidden lg:block bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: 'url(/images/hero-bg-desktop.png)' }}
@@ -42,7 +87,7 @@ export function Hero() {
               style={{ transitionDelay: '0ms' }}
             >
               <span className="inline-block bg-[#5D8A66]/10 text-[#1B4D3E] px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-[#5D8A66]/20">
-                Centro de Medicina Integral en Popayán
+                {content.badge}
               </span>
             </div>
 
@@ -50,17 +95,15 @@ export function Hero() {
               className="reveal opacity-0 translate-y-8 blur-[2px] transition-all duration-1000 ease-out font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1B4D3E] leading-tight mb-6"
               style={{ transitionDelay: '150ms' }}
             >
-              Tu salud al{' '}
-              <span className="text-[#C67B5C] italic">alcance de todos</span>
+              {content.title}{' '}
+              <span className="text-[#C67B5C] italic">{content.titleHighlight}</span>
             </h1>
 
             <p
               className="reveal opacity-0 translate-y-8 blur-[2px] transition-all duration-1000 ease-out text-lg text-[#5A5A5A] max-w-xl mx-auto lg:mx-0 mb-8"
               style={{ transitionDelay: '300ms' }}
             >
-              Te ofrecemos medicina tradicional y alternativa con un enfoque
-              holístico. Homeopatía, naturopatía, nutrición y más para tu
-              bienestar integral.
+              {content.description}
             </p>
 
             <div
@@ -68,19 +111,19 @@ export function Hero() {
               style={{ transitionDelay: '450ms' }}
             >
               <a
-                href="https://wa.me/573166998154"
+                href={`https://wa.me/${contact.whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-[#C67B5C] text-white px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 hover:bg-[#B56A4D] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                Agendar por WhatsApp
+                {content.ctaPrimary}
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </a>
               <a
                 href="#servicios"
                 className="border-2 border-[#1B4D3E] text-[#1B4D3E] px-8 py-4 rounded-full font-semibold flex items-center justify-center hover:bg-[#1B4D3E] hover:text-white transition-all duration-300 hover:-translate-y-1"
               >
-                Conocer servicios
+                {content.ctaSecondary}
               </a>
             </div>
           </div>
