@@ -1,10 +1,21 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "rm -rf node_modules package-lock.json && npm install && npm run build",
+  "framework": "vite",
+  "buildCommand": "cd app && rm -rf node_modules package-lock.json && npm install && npm run build",
+  "outputDirectory": "app/dist",
+  "installCommand": "cd app && npm install",
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/dashboard",
       "destination": "/index.html"
+    },
+    {
+      "source": "/dashboard/(.*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
     }
   ]
 }
