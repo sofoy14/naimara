@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MapPin, Globe, Video } from 'lucide-react';
+import { Globe, Video } from 'lucide-react';
 
 export function UbicacionBanner() {
   const [config, setConfig] = useState<{ enColombia: boolean } | null>(null);
