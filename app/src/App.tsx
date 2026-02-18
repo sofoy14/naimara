@@ -1,4 +1,3 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Navbar } from './sections/Navbar';
 import { Hero } from './sections/Hero';
@@ -12,10 +11,8 @@ import { Testimonios } from './sections/Testimonios';
 import { Contacto } from './sections/Contacto';
 import { Footer } from './sections/Footer';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
-import { Dashboard } from './dashboard/Dashboard';
-import { UbicacionBanner } from './components/UbicacionBanner';
 
-function HomePage() {
+function App() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -28,7 +25,6 @@ function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#F7F5F0]">
-      <UbicacionBanner />
       <Navbar scrolled={scrolled} />
       <main>
         <Hero />
@@ -44,17 +40,6 @@ function HomePage() {
       <Footer />
       <WhatsAppFloat />
     </div>
-  );
-}
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </BrowserRouter>
   );
 }
 
