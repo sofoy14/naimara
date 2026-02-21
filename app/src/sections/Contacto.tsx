@@ -17,8 +17,8 @@ const contactInfo = [
   {
     icon: '/images/contacto-telefono.png',
     title: 'Teléfono',
-    content: '316-699-8154',
-    link: 'tel:+573166998154',
+    content: '613-438-817',
+    link: 'tel:+57613438817',
   },
   {
     icon: '/images/contacto-certificado.png',
@@ -29,7 +29,7 @@ const contactInfo = [
   {
     icon: '/images/contacto-horario.png',
     title: 'Horario',
-    content: 'Lunes a Sábado\n8:00 AM - 6:00 PM',
+    content: 'Domingo a Viernes\n8:00 AM - 6:00 PM',
     link: null,
   },
 ];

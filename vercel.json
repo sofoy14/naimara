@@ -1,6 +1,10 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm ci && npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "installCommand": "echo 'Using npm ci in buildCommand'",
   "rewrites": [
-    { "source": "/dashboard", "destination": "/index.html" },
-    { "source": "/dashboard/(.*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
