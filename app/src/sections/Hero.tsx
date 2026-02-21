@@ -1,12 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { getHeroContent, getContactInfo } from '../lib/contentful';
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const [heroContent, setHeroContent] = useState<any>(null);
-  const [contactInfo, setContactInfo] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const elements = heroRef.current?.querySelectorAll('.reveal');
@@ -14,49 +10,6 @@ export function Hero() {
       el.classList.add('animate-in');
     });
   }, []);
-
-  useEffect(() => {
-    async function loadContent() {
-      try {
-        const [hero, contact] = await Promise.all([
-          getHeroContent(),
-          getContactInfo()
-        ]);
-        setHeroContent(hero);
-        setContactInfo(contact);
-      } catch (error) {
-        console.error('Error loading content:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadContent();
-  }, []);
-
-  // Valores por defecto mientras carga
-  const defaultHero = {
-    badge: 'Centro de Medicina Integral en Popayán',
-    title: 'Tu salud al',
-    titleHighlight: 'alcance de todos',
-    description: 'Te ofrecemos medicina tradicional y alternativa con un enfoque holístico. Homeopatía, naturopatía, nutrición y más para tu bienestar integral.',
-    ctaPrimary: 'Agendar por WhatsApp',
-    ctaSecondary: 'Conocer servicios'
-  };
-
-  const defaultContact = {
-    whatsappNumber: '573166998154'
-  };
-
-  const content = heroContent || defaultHero;
-  const contact = contactInfo || defaultContact;
-
-  if (loading) {
-    return (
-      <section className="min-h-screen flex items-center justify-center bg-[#F7F5F0]">
-        <div className="animate-pulse text-[#5D8A66]">Cargando...</div>
-      </section>
-    );
-  }
 
   return (
     <section
@@ -87,7 +40,7 @@ export function Hero() {
               style={{ transitionDelay: '0ms' }}
             >
               <span className="inline-block bg-[#5D8A66]/10 text-[#1B4D3E] px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-[#5D8A66]/20">
-                {content.badge}
+                Centro de Medicina Integral en Popayán
               </span>
             </div>
 
@@ -95,15 +48,17 @@ export function Hero() {
               className="reveal opacity-0 translate-y-8 blur-[2px] transition-all duration-1000 ease-out font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1B4D3E] leading-tight mb-6"
               style={{ transitionDelay: '150ms' }}
             >
-              {content.title}{' '}
-              <span className="text-[#C67B5C] italic">{content.titleHighlight}</span>
+              Tu salud al{' '}
+              <span className="text-[#C67B5C] italic">alcance de todos</span>
             </h1>
 
             <p
               className="reveal opacity-0 translate-y-8 blur-[2px] transition-all duration-1000 ease-out text-lg text-[#5A5A5A] max-w-xl mx-auto lg:mx-0 mb-8"
               style={{ transitionDelay: '300ms' }}
             >
-              {content.description}
+              Te ofrecemos medicina tradicional y alternativa con un enfoque
+              holístico. Homeopatía, naturopatía, nutrición y más para tu
+              bienestar integral.
             </p>
 
             <div
@@ -111,19 +66,19 @@ export function Hero() {
               style={{ transitionDelay: '450ms' }}
             >
               <a
-                href={`https://wa.me/${contact.whatsappNumber}`}
+                href="https://wa.me/573166998154"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-[#C67B5C] text-white px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 hover:bg-[#B56A4D] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                {content.ctaPrimary}
+                Agendar por WhatsApp
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </a>
               <a
                 href="#servicios"
                 className="border-2 border-[#1B4D3E] text-[#1B4D3E] px-8 py-4 rounded-full font-semibold flex items-center justify-center hover:bg-[#1B4D3E] hover:text-white transition-all duration-300 hover:-translate-y-1"
               >
-                {content.ctaSecondary}
+                Conocer servicios
               </a>
             </div>
           </div>
