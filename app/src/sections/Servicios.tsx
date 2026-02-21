@@ -33,6 +33,11 @@ const servicios = [
     description: 'Ajustes vertebrales para aliviar dolores y mejorar tu calidad de vida.',
   },
   {
+    icon: '/images/servicio-quiropractica.png',
+    title: 'Quiropaxia',
+    description: 'Técnicas especializadas de manipulación vertebral para el alivio del dolor y corrección postural.',
+  },
+  {
     icon: '/images/servicio-fisioterapia.png',
     title: 'Fisioterapia y Rehabilitación',
     description: 'Recupera tu movilidad y funcionalidad con terapias personalizadas.',

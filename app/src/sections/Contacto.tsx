@@ -41,6 +41,7 @@ const servicios = [
   'Homeopatía',
   'Osteopatía',
   'Quiropráctica',
+  'Quiropaxia',
   'Fisioterapia y Rehabilitación',
   'Reflexoterapia',
   'Nutrición Clínica',
