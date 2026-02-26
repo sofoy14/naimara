@@ -226,8 +226,9 @@ export function Productos() {
               {/* Icon */}
               <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
                 <img
-                  src="/images/producto-jarabe.png"
+                  src="/images/producto-jarabe.webp"
                   alt=""
+                  loading="lazy"
                   className="w-9 h-9 object-contain"
                 />
               </div>

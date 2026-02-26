@@ -3,31 +3,31 @@ import { ArrowRight, MessageCircle } from 'lucide-react';
 
 const contactInfo = [
   {
-    icon: '/images/contacto-ubicacion.png',
+    icon: '/images/contacto-ubicacion.webp',
     title: 'Dirección',
     content: 'Calle 2C #51-12, Barrio Lomas de Granada\nPopayán, Cauca',
     link: null,
   },
   {
-    icon: '/images/contacto-email.png',
+    icon: '/images/contacto-email.webp',
     title: 'Email',
     content: 'saludintegrallavaisier@gmail.com',
     link: 'mailto:saludintegrallavaisier@gmail.com',
   },
   {
-    icon: '/images/contacto-telefono.png',
+    icon: '/images/contacto-telefono.webp',
     title: 'Teléfono',
     content: '613-438-817',
     link: 'tel:+57613438817',
   },
   {
-    icon: '/images/contacto-certificado.png',
+    icon: '/images/contacto-certificado.webp',
     title: 'Registro',
     content: 'Resolución N. 07130\nLey 1164/2007 - MinSalud',
     link: null,
   },
   {
-    icon: '/images/contacto-horario.png',
+    icon: '/images/contacto-horario.webp',
     title: 'Horario',
     content: 'Domingo a Viernes\n8:00 AM - 6:00 PM',
     link: null,
@@ -168,6 +168,7 @@ export function Contacto() {
                     <img
                       src={item.icon}
                       alt={item.title}
+                      loading="lazy"
                       className="w-7 h-7 object-contain"
                     />
                   </div>

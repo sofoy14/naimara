@@ -36,7 +36,7 @@ export function Navbar({ scrolled }: NavbarProps) {
           <a href="#" className="flex items-center gap-2 group">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#5D8A66] to-[#1B4D3E] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
               <img
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="Lavoisier"
                 className="w-6 h-6 object-contain"
               />

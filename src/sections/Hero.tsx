@@ -19,14 +19,14 @@ export function Hero() {
       {/* Background Images - Responsive */}
       <div 
         className="absolute inset-0 lg:hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: 'url(/images/hero-bg-mobile.png)' }}
+        style={{ backgroundImage: 'url(/images/hero-bg-mobile.webp)' }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#F7F5F0]/95 via-[#F7F5F0]/80 to-transparent" />
       </div>
       
       <div 
         className="absolute inset-0 hidden lg:block bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: 'url(/images/hero-bg-desktop.png)' }}
+        style={{ backgroundImage: 'url(/images/hero-bg-desktop.webp)' }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#F7F5F0]/95 via-[#F7F5F0]/70 to-[#F7F5F0]/40" />
       </div>
@@ -92,7 +92,7 @@ export function Hero() {
               {/* Logo Image instead of green circle */}
               <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl animate-breathe bg-white">
                 <img
-                  src="/images/logo-main.png"
+                  src="/images/logo-main.webp"
                   alt="Centro de Medicina Integral Lavoisier"
                   className="w-full h-full object-contain p-4"
                 />
@@ -106,7 +106,7 @@ export function Hero() {
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-xl bg-[#5D8A66]/10 flex items-center justify-center">
                     <img
-                      src="/images/logo.png"
+                      src="/images/logo.webp"
                       alt="Natural"
                       className="w-7 h-7 object-contain"
                     />

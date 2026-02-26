@@ -11,7 +11,7 @@ const tratamientos = [
       'Sin efectos tóxicos ni adictivos',
       'Medicamentos registrados ante la Secretaría de Salud',
     ],
-    image: '/images/tratamiento-homeopatia.png',
+    image: '/images/tratamiento-homeopatia.webp',
     cta: 'Consultar Homeopatía',
     reverse: false,
   },
@@ -24,7 +24,7 @@ const tratamientos = [
       'Aceites vegetales extra virgenes',
       'Aromáticas medicinales terapéuticas',
     ],
-    image: '/images/tratamiento-fitoterapia.png',
+    image: '/images/tratamiento-fitoterapia.webp',
     cta: 'Plan Nutricional',
     reverse: true,
   },
@@ -37,7 +37,7 @@ const tratamientos = [
       'Preparados con agua tibia',
       'Planes de 15 a 20 días personalizados',
     ],
-    image: '/images/tratamiento-jugoterapia.png',
+    image: '/images/tratamiento-jugoterapia.webp',
     cta: 'Programa de Jugos',
     reverse: false,
   },
@@ -164,6 +164,7 @@ export function Tratamientos() {
                   <img
                     src={tratamiento.image}
                     alt={tratamiento.title}
+                    loading="lazy"
                     className="w-48 h-48 sm:w-64 sm:h-64 object-contain relative z-10 group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>

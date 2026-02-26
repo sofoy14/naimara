@@ -3,57 +3,57 @@ import { ArrowRight } from 'lucide-react';
 
 const servicios = [
   {
-    icon: '/images/servicio-medicina.png',
+    icon: '/images/servicio-medicina.webp',
     title: 'Medicina General',
     description: 'Cuidamos tu salud con atención integral, diagnóstico y seguimiento personalizado.',
   },
   {
-    icon: '/images/servicio-ginecologia.png',
+    icon: '/images/servicio-ginecologia.webp',
     title: 'Ginecología',
     description: 'Atención especializada en salud femenina con enfoque preventivo y natural.',
   },
   {
-    icon: '/images/servicio-naturopatia.png',
+    icon: '/images/servicio-naturopatia.webp',
     title: 'Naturopatía',
     description: 'Medicina natural que potencia la capacidad de autocuración de tu cuerpo.',
   },
   {
-    icon: '/images/servicio-homeopatia.png',
+    icon: '/images/servicio-homeopatia.webp',
     title: 'Homeopatía',
     description: 'Tratamiento suave y efectivo para enfermedades patológicas, oncológicas y más.',
   },
   {
-    icon: '/images/servicio-osteopatia.png',
+    icon: '/images/servicio-osteopatia.webp',
     title: 'Osteopatía',
     description: 'Técnicas manuales para restaurar la movilidad y aliviar dolores musculoesqueléticos.',
   },
   {
-    icon: '/images/servicio-quiropractica.png',
+    icon: '/images/servicio-quiropractica.webp',
     title: 'Quiropráctica',
     description: 'Ajustes vertebrales para aliviar dolores y mejorar tu calidad de vida.',
   },
   {
-    icon: '/images/servicio-quiropractica.png',
+    icon: '/images/servicio-quiropractica.webp',
     title: 'Quiropaxia',
     description: 'Técnicas especializadas de manipulación vertebral para el alivio del dolor y corrección postural.',
   },
   {
-    icon: '/images/servicio-fisioterapia.png',
+    icon: '/images/servicio-fisioterapia.webp',
     title: 'Fisioterapia y Rehabilitación',
     description: 'Recupera tu movilidad y funcionalidad con terapias personalizadas.',
   },
   {
-    icon: '/images/servicio-reflexoterapia.png',
+    icon: '/images/servicio-reflexoterapia.webp',
     title: 'Reflexoterapia',
     description: 'Estimulación de puntos reflejos en los pies para mejorar tu bienestar general.',
   },
   {
-    icon: '/images/servicio-nutricion.png',
+    icon: '/images/servicio-nutricion.webp',
     title: 'Nutrición Clínica',
     description: 'Planes alimenticios personalizados: fitoterapia, jugoterapia y más.',
   },
   {
-    icon: '/images/servicio-psicologia.png',
+    icon: '/images/servicio-psicologia.webp',
     title: 'Psicología',
     description: 'Apoyo emocional y mental para lograr tu equilibrio integral.',
   },
@@ -151,6 +151,7 @@ export function Servicios() {
                 <img
                   src={servicio.icon}
                   alt={servicio.title}
+                  loading="lazy"
                   className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
                 />
               </div>
